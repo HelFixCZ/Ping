@@ -241,6 +241,11 @@ class Ping {
     // Strip empty lines and reorder the indexes from 0 (to make results more
     // uniform across OS versions).
     $this->commandOutput = implode($output, '');
+
+    if(stripos($output[1], 'redirect host') !== false){
+      unset($output[1]); 
+    }
+
     $output = array_values(array_filter($output));
 
     // If the result line in the output is not empty, parse it.
